@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/sunjet-security?useUnicode=yes&characterEncode=UTF-8&useSSL=false
+    username: root
+    password: lzw719
+  session:
+    store-type: none
+security:
+  basic:
+    enabled: false
