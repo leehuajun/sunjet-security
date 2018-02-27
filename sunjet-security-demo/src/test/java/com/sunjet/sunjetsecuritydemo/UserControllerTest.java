@@ -28,6 +28,7 @@ public class UserControllerTest {
 
     @Test
     public void whenQuerySuccess() throws Exception {
+
         mockMvc.perform(MockMvcRequestBuilders.get("/user")
                 .param("username","jojo")
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
