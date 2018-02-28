@@ -49,11 +49,14 @@ public class UserController {
     @GetMapping("/{id:\\d+}")
     @JsonView(User.UserDetailView.class)
     public User getInfo(@PathVariable(name = "id") String id) {
+// 自定义异常处理
+//        throw new UserNotExistException(id);
+//        throw new RuntimeException(id);
 
-        throw new UserNotExistException(id);
+        System.out.println("进入getInfo服务.");
 
-//        User user = new User("tom", "");
-//        return user;
+        User user = new User("tom", "");
+        return user;
     }
 
     /**
