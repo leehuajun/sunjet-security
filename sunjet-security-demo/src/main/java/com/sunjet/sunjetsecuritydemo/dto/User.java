@@ -1,9 +1,35 @@
 package com.sunjet.sunjetsecuritydemo.dto;
 
-public class User {
-    private String username;
-    private String password;
+import com.fasterxml.jackson.annotation.JsonView;
+import org.hibernate.validator.constraints.NotBlank;
 
+import javax.validation.constraints.Past;
+import java.util.Date;
+
+public class User {
+
+    public interface UserSimpleView {}
+
+    public interface UserDetailView extends UserSimpleView {}
+
+    private String id;
+    private String username;
+
+    @NotBlank(message = "密码不能为空")
+    private String password;
+    @Past(message = "生日必须是过去的时间")
+    private Date birthday;
+
+    @JsonView(UserSimpleView.class)
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    @JsonView(UserSimpleView.class)
     public String getUsername() {
         return username;
     }
@@ -12,6 +38,7 @@ public class User {
         this.username = username;
     }
 
+    @JsonView(UserDetailView.class)
     public String getPassword() {
         return password;
     }
@@ -20,11 +47,33 @@ public class User {
         this.password = password;
     }
 
+    @JsonView(UserSimpleView.class)
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
     public User() {
     }
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+    }
+
+    public User(String id, String username, String password) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+    }
+
+    public User(String id, String username, String password, Date birthday) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.birthday = birthday;
     }
 }
